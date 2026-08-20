@@ -253,9 +253,3 @@ This repo is one of four. Together they form **Zero → Frontier**, a complete A
 Curriculum text is licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — reuse it, adapt it, credit the source. Every linked course, book, video, and repository belongs to its respective creator; this repo curates, it does not host.
 
 Compiled **August 2026**. Links age; skills don't — if a resource here has been replaced by the time you arrive, learn its successor. **Found a dead link? Open an issue or PR.**
-
-<div align="center">
-
-*If this briefing helps you, a ⭐ helps the next person find it.*
-
-</div>
