@@ -4,7 +4,7 @@
 
 ### 22 AI technologies from the last 18 months — beyond what the general public uses
 
-![format](https://img.shields.io/badge/format-22_technologies-8A631C?style=for-the-badge)
+![format](https://img.shields.io/badge/format-21_technologies-8A631C?style=for-the-badge)
 ![audience](https://img.shields.io/badge/audience-technology_leaders-8A631C?style=for-the-badge)
 ![evidence](https://img.shields.io/badge/evidence-verified_Aug_2026-8A631C?style=for-the-badge)
 ![homework](https://img.shields.io/badge/homework-none-8A631C?style=for-the-badge)
@@ -12,7 +12,7 @@
 
 </div>
 
-> For technology leaders who want to know what has actually changed. Twenty-two technologies from roughly the last eighteen months, all of them well past what the general public sees: AI models a company can own instead of rent, the plumbing behind agents, what it costs to run any of it, a few things that look nothing like a chatbot, and the software now testing other software. Each entry says what happened, links the proof, and says what it makes possible. No warnings, no advice, no homework.
+> For technology leaders who want to know what has actually changed. Twenty-one technologies from roughly the last eighteen months, all of them well past what the general public sees: AI models a company can own instead of rent, the plumbing behind agents, what agents need to deal with the outside world, a few things that look nothing like a chatbot, and the software now testing other software. Each entry says what happened, links the proof, and says what it makes possible. No warnings, no advice, no homework.
 
 ## 📖 How to read this
 
@@ -99,41 +99,33 @@ The Model Context Protocol is the standard way an agent finds and uses a tool �
 
 ---
 
-## Part three — What it costs to run AI
+## Part three — Agents out in the world
 
-*The machinery of serving AI, and where the ten-times savings are hiding.*
+*Three standards that let agents work beyond one company's walls — finding each other, paying for things, and proving who they are.*
 
-### 09 · Smaller numbers, guessed words, much lower cost
+### 09 · Agents from different companies can find each other
 
-Two tricks now stack. The first stores a model's numbers in four bits instead of sixteen, shrinking it to a quarter of the size with accuracy holding within measurement noise on NVIDIA's newest chips. The second has a small fast model guess the next few words and the big model check them all at once — the output is provably identical, at roughly twice the speed. Together they approach a tenfold saving.
+A2A is a standard for agents talking to agents rather than to tools. Each agent publishes a small JSON file — an Agent Card — at a fixed address, listing what it can do and how to authenticate; another agent reads it and hands over work. Google launched it in April 2025 and gave it to the Linux Foundation that June. The first stable version landed in March 2026, and AWS, Microsoft, and Google Cloud all support it in their agent platforms.
 
-**Evidence:** [NVIDIA Research: Pushing Intelligence to 4-bit](https://research.nvidia.com/labs/eai/blogs/pushing-intelligence-to-4-bit/) · [Red Hat: faster inference with vLLM and EAGLE-3](https://developers.redhat.com/articles/2025/07/01/fly-eagle3-fly-faster-inference-vllm-speculative-decoding)
+**Evidence:** [What A2A is](https://a2a-protocol.org/latest/topics/what-is-a2a/) · [Handover to the Linux Foundation](https://developers.googleblog.com/en/google-cloud-donates-a2a-to-linux-foundation/) · [AWS support in its own docs](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-a2a.html)
 
-> 💡 **What it opens up —** The same servers quietly carry several times yesterday's traffic, with no change to the model or the answers it gives.
+> 💡 **What it opens up —** Work can be split across agents built by different vendors — yours, a partner's, a supplier's — without writing a custom integration for every pair.
 
-### 10 · You can pay for how hard the AI thinks
+### 10 · Agents can hold a budget and settle a bill
 
-Every major AI service now has an effort dial. Set it low for simple sorting, high for genuinely hard problems, with one model covering both. The saving is real: at a medium setting one of Anthropic's models matched an earlier model's best score while producing 76% less reasoning — and reasoning is the part you pay for. The catch is that it is usually left on its default, and nobody owns the setting.
+Two standards let an agent buy things. Google's AP2 gives it a signed mandate: cryptographic proof of exactly what a person authorised it to spend, so a transaction cannot later be disputed. Google handed AP2 to the FIDO Alliance in April 2026. x402, started at Coinbase, does the settlement — a server answers an unpaid request with HTTP 402, the agent pays, the request retries. Its Linux Foundation body launched in July 2026 with Stripe, Visa, Mastercard, Google, and AWS among the members.
 
-**Evidence:** [OpenAI: Introducing GPT-5 for developers](https://openai.com/index/introducing-gpt-5-for-developers/) · [Anthropic: Introducing Claude Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5)
+**Evidence:** [x402 Foundation launch](https://x402.org/linux-foundation-announces-operational-launch-of-x402-foundation-to-standardize-internet-native-payments-for-ai-agents-and-applications/) · [Google's AP2 announcement](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) · [Stripe's x402 integration](https://docs.stripe.com/payments/machine/x402)
 
-> 💡 **What it opens up —** One model can serve the whole range of work, with expensive thinking spent only where the task earns it.
+> 💡 **What it opens up —** Machine-to-machine buying with no one clicking a button — an agent paying for data, an API call, or a delivery, inside limits a person set in advance.
 
-### 11 · Chips built only for running AI
+### 11 · Every agent gets its own ID card
 
-Purpose-built chips broke the speed limit of ordinary graphics cards. Cerebras, which makes a processor the size of a dinner plate, runs a 405-billion-parameter model at 969 tokens a second — a token being roughly four letters — and a smaller model at over 2,600, around nineteen times the quickest graphics-card services. Groq's chips power Meta's official Llama service. At that speed a thirty-step task finishes in seconds.
+Microsoft Entra Agent ID, generally available since April 2026, gives each agent a real identity in the company directory instead of a shared service account. The machinery that governs staff then applies: access rules, eight kinds of risk detection, and a joiner-mover-leaver lifecycle. The accountability detail is the interesting one — every agent has a named human sponsor, and if that person leaves, sponsorship transfers automatically to their manager. Agents built on AWS Bedrock or n8n can be enrolled too.
 
-**Evidence:** [Cerebras: world's fastest inference for Llama 4](https://www.cerebras.ai/press-release/llama4PR) · [Groq: Meta partnership for the official Llama API](https://groq.com/newsroom/meta-and-groq-collaborate-to-deliver-fast-inference-for-the-official-llama-api) · [Cerebras: six new AI inference datacenters](https://www.cerebras.ai/press-release/cerebras-announces-six-new-ai-datacenters-across-north-america-and-europe-to-deliver-industry-s)
+**Evidence:** [What Entra Agent ID is](https://learn.microsoft.com/en-us/entra/agent-id/what-is-microsoft-entra-agent-id) · [Enrolling non-Microsoft agents](https://learn.microsoft.com/en-us/entra/agent-id/configure-third-party-agents) · [Release record](https://learn.microsoft.com/en-us/entra/fundamentals/whats-new)
 
-> 💡 **What it opens up —** Work that had to be abandoned for being too slow — live voice, agents answering while someone waits — comes back into range.
-
-### 12 · Running models yourself got professional
-
-The free software for serving your own models caught up with what the big labs run internally. vLLM became a top-level project of the PyTorch Foundation with over a thousand contributors, and SGLang reuses work across similar requests for up to six times the throughput — it now serves Grok at xAI and DeepSeek on Microsoft Azure. Between them they handle trillions of tokens a day.
-
-**Evidence:** [PyTorch Foundation welcomes vLLM](https://pytorch.org/blog/pytorch-foundation-welcomes-vllm/) · [SGLang joins the PyTorch ecosystem](https://pytorch.org/blog/sglang-joins-pytorch/)
-
-> 💡 **What it opens up —** Hosting your own models becomes a genuine cost decision rather than a science project, because the serving software is no longer the weak link.
+> 💡 **What it opens up —** Agents can be granted, audited, and switched off like employees, with a named person answerable for each one — the piece that was missing before letting them work unattended.
 
 ---
 
@@ -141,7 +133,7 @@ The free software for serving your own models caught up with what the big labs r
 
 *Things AI can now do that look nothing like the chat window most people picture.*
 
-### 13 · Robots that learn a job from a few demonstrations
+### 12 · Robots that learn a job from a few demonstrations
 
 Putting a language model behind a robot's hands changed what robots can do. Figure's humanoids, trained on about 500 hours of demonstrations, sorted nearly 50,000 packages across forty hours of unattended work in May 2026, and the company now builds one robot an hour. Google's version runs on the robot itself and picks up a new task from as few as fifty demonstrations.
 
@@ -149,7 +141,7 @@ Putting a language model behind a robot's hands changed what robots can do. Figu
 
 > 💡 **What it opens up —** A robot that learns a new warehouse or line job by being shown it a few dozen times, rather than a machine built to do one thing forever.
 
-### 14 · AI that produces genuinely new results
+### 13 · AI that produces genuinely new results
 
 Google's AlphaEvolve found a faster way to multiply matrices, beating a record that had stood for 56 years, and recovered 0.7% of Google's worldwide computing capacity. Its co-scientist system proposed existing drugs that might treat liver scarring; researchers tested them and one cut the damage marker by 91%, published in a journal. In both cases the AI proposed at volume and something else checked the answers.
 
@@ -157,7 +149,7 @@ Google's AlphaEvolve found a faster way to multiply matrices, beating a record t
 
 > 💡 **What it opens up —** Hard problems with a clear way to score an answer — scheduling, formulations, chip layouts — can be handed to a system that finds improvements nobody on the team proposed.
 
-### 15 · AI that builds worlds for other AI to practise in
+### 14 · AI that builds worlds for other AI to practise in
 
 Google's Genie 3 turns a sentence into a place you can walk around, drawn live and holding together for minutes at a time. DeepMind now drops its agents into these invented worlds to practise, a loop its chief executive calls endless training. It reached the public in 2026 as Project Genie.
 
@@ -165,7 +157,7 @@ Google's Genie 3 turns a sentence into a place you can walk around, drawn live a
 
 > 💡 **What it opens up —** Practice grounds for robots and software agents can be conjured from a description — a warehouse aisle, a shop floor, a hazardous site — instead of built by hand or borrowed from live operations.
 
-### 16 · A different way of writing text, ten times faster
+### 15 · A different way of writing text, ten times faster
 
 Almost every AI writes one word at a time. Diffusion models write the whole answer roughly, then sharpen it over a few passes, the way image generators work. Inception's Mercury does this at over 1,000 tokens a second, five to ten times the usual speed, and Google has shown the same approach. Because the speed comes from the method rather than from a smaller model, quality holds up.
 
@@ -179,7 +171,7 @@ Almost every AI writes one word at a time. Diffusion models write the whole answ
 
 *Six technologies taking over work that test scripts do today — written in plain language, no background needed. Where a number comes from the company selling the product rather than an independent test, it says so.*
 
-### 17 · Tests written in plain English
+### 16 · Tests written in plain English
 
 Momentic lets a team describe a test the way they would explain it to a colleague — log in, add an item to the basket, check the total. Its software then works out how to do that on screen, and when the app's design changes, it finds the new path instead of failing. The company raised $15 million in November 2025; Notion, Webflow, and Xero are customers.
 
@@ -187,7 +179,7 @@ Momentic lets a team describe a test the way they would explain it to a colleagu
 
 > 💡 **What it opens up —** Tests stop breaking every time a button moves, because what you wrote down is the intent, not the button.
 
-### 18 · Nobody writes the tests at all
+### 17 · Nobody writes the tests at all
 
 Meticulous goes further: it quietly records how real people use an app, then turns those recordings into tests by itself. It adds new ones as features ship, retires the ones that no longer apply, and replays them on every code change to show what looks different. No one writes or maintains a single test. Dropbox and Notion use it; the company raised $15 million in July 2026. Its no-flaky-tests claim is its own.
 
@@ -195,7 +187,7 @@ Meticulous goes further: it quietly records how real people use an app, then tur
 
 > 💡 **What it opens up —** The cost of a test suite becomes the cost of running it — the writing and the upkeep disappear.
 
-### 19 · AI now uses a computer about as well as a person
+### 18 · AI now uses a computer about as well as a person
 
 There is a standard exam for this called OSWorld: 369 everyday desktop jobs, like editing a spreadsheet or working across several windows. In April 2024 the best AI finished 12% of them, against about 72% for a human. By February 2026 Anthropic reported roughly 72% for its own models — its own figures, on an updated version of the exam. Google says its teams already use a similar model to test their products.
 
@@ -203,7 +195,7 @@ There is a standard exam for this called OSWorld: 369 everyday desktop jobs, lik
 
 > 💡 **What it opens up —** Screens that test tools could never reach — desktop software, Citrix, old ERP systems — can now be worked by an agent that looks and clicks the way a tester does.
 
-### 20 · The same skill, running on your own servers
+### 19 · The same skill, running on your own servers
 
 ByteDance gives away UI-TARS, a model that does the same job: it looks at a screenshot and decides where to click, across desktop, browser, and Android. Because anyone can download it, it can run inside a company's own data centre, so screenshots of a client's banking or hospital system never leave the building. Its scores are self-reported, but they sit in the same range as the paid services.
 
@@ -211,7 +203,7 @@ ByteDance gives away UI-TARS, a model that does the same job: it looks at a scre
 
 > 💡 **What it opens up —** Agent-driven testing for clients whose data is not allowed to go outside — paid for in servers rather than per use.
 
-### 21 · Tests that prove they catch something
+### 20 · Tests that prove they catch something
 
 Test writing usually chases coverage: how much of the code was touched. Meta flipped it. Their system first invents a realistic bug — one that leaks private data, say — then writes a test proven to catch that exact bug. Across 10,795 pieces of code in Facebook, Instagram, and WhatsApp, engineers kept 73% of the tests it produced. The work is published in a peer-reviewed paper, which is rare in this field.
 
@@ -219,7 +211,7 @@ Test writing usually chases coverage: how much of the code was touched. Meta fli
 
 > 💡 **What it opens up —** A test suite can be judged by the kinds of bugs it demonstrably catches rather than the lines it touches — which makes something like privacy testing or payment testing a service you can prove.
 
-### 22 · Coverage becomes an overnight job
+### 21 · Coverage becomes an overnight job
 
 Adding tests to an old system used to be months of dull work. Now an agent is pointed at the code, writes tests, runs them, and keeps only the ones that pass and genuinely add coverage. Qodo's version had 15 of its tests accepted into a large open-source project. Diffblue does the same for big Java systems without using a language model at all, so the output is predictable enough to run unattended.
 
@@ -229,13 +221,7 @@ Adding tests to an old system used to be months of dull work. Now an agent is po
 
 ---
 
-## 📶 Also on the sweep
-
-- **Agents talking to agents.** A standard called A2A, now run by the Linux Foundation with 150+ organisations behind it, lets agents built by different companies find each other and split up work. [Linux Foundation](https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year)
-- **Agents that can pay.** New standards let an agent hold spending permission and settle a bill by itself. Stripe added support in February 2026, and around 69,000 active agents had made 165 million transactions by April. [How the standards compare](https://www.crossmint.com/learn/agentic-payments-protocols-compared)
-- **Agents with ID cards.** Microsoft now issues every agent a proper identity in the company directory, with the same access rules and controls a staff account gets. [Microsoft](https://learn.microsoft.com/en-us/entra/agent-id/what-is-microsoft-entra-agent-id)
-
-> The test of this page: it earns its keep when one of these comes up in your next planning discussion before it turns up in a supplier's pitch deck.
+> **The test of this page** — it earns its keep when one of these comes up in your next planning discussion before it turns up in a supplier's pitch deck.
 
 ## 🗺️ The series
 
